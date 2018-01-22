@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Globalization;
+using Csv.Serialization;
 
 namespace User_Generator
 {
@@ -10,11 +13,18 @@ namespace User_Generator
     {
         string userName;
         string userSurname;
-        bool userStatus;
+        static bool userStatus = true;
         string login;
-        string password = "nicecti1!";
+        string passw = "nicecti1!";       
+        string hireDate = DateTime.UtcNow.ToString("G",
+                        CultureInfo.CreateSpecificCulture("en-us"));
+        string graduationDate = DateTime.UtcNow.ToString("G",
+                        CultureInfo.CreateSpecificCulture("en-us"));
+        int graduationScore = 0;
+        int internalUserId = 2;
+        string userState = (UserStatus == true ? "active" : "inactive");
 
-        public string UserName
+        public string first_name
         {
             get
             {
@@ -27,7 +37,7 @@ namespace User_Generator
             }
         }
 
-        public string UserSurname
+        public string last_name
         {
             get
             {
@@ -40,7 +50,8 @@ namespace User_Generator
             }
         }
 
-        public bool UserStatus
+        [CsvIgnore]
+        static public bool UserStatus
         {
             get
             {
@@ -53,7 +64,9 @@ namespace User_Generator
             }
         }
 
-        public string Login
+
+
+        public string os_login
         {
             get
             {
@@ -66,16 +79,81 @@ namespace User_Generator
             }
         }
 
-        public string Password
+        public string password
         {
             get
             {
-                return password;
+                return passw;
             }
 
             set
             {
-                password = value;
+                passw = value;
+            }
+        }
+
+        public string hire_date
+        {
+            get
+            {
+                return hireDate;
+            }
+
+            set
+            {
+                hireDate = value;
+            }
+        }
+
+        public string graduation_date
+        {
+            get
+            {
+                return graduationDate;
+            }
+
+            set
+            {
+                graduationDate = value;
+            }
+        }
+
+        public int graduation_score
+        {
+            get
+            {
+                return graduationScore;
+            }
+
+            set
+            {
+                graduationScore = value;
+            }
+        }
+
+        public int internal_user_id
+        {
+            get
+            {
+                return internalUserId;
+            }
+
+            set
+            {
+                internalUserId = value;
+            }
+        }
+
+        public string status
+        {
+            get
+            {
+                return userState;
+            }
+
+            set
+            {
+                userState = value;
             }
         }
 
@@ -97,7 +175,7 @@ namespace User_Generator
             userSurname = surname;
             userStatus = status;
             this.login = login;
-            this.password = password;
+            passw = password;
         }
     }
 

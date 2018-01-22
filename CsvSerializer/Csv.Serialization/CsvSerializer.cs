@@ -34,7 +34,7 @@ namespace Csv.Serialization
 
 		private string _replacement = ((char)0x255).ToString();
 
-		private string _rowNumberColumnTitle = "RowNumber";
+		private string _rowNumberColumnTitle = "user_id";
 
 		private char _separator = ',';
 

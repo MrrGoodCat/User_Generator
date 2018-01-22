@@ -19,7 +19,10 @@ namespace User_Generator
         {
             while (count != 0)
             {
-                User user = new User(data.GetRandomName(), data.GetRandomSurname(), true, data.GetRandomName() + data.GetRandomSurname(), "nice");
+                string firstName = data.GetRandomName();
+                string lastName = data.GetRandomSurname();
+                string login = firstName + lastName;
+                User user = new User(firstName, lastName, true, login, "nice");
                 Users.Add(user);
                 count--;
             }
