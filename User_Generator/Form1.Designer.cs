@@ -40,6 +40,7 @@
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.GenerateDataBtn = new System.Windows.Forms.Button();
             this.FilePathTB = new System.Windows.Forms.TextBox();
+            this.textBoxNumberOfUsers = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -160,11 +161,19 @@
             this.FilePathTB.TabIndex = 11;
             this.FilePathTB.Text = "C:\\data.csv";
             // 
+            // textBoxNumberOfUsers
+            // 
+            this.textBoxNumberOfUsers.Location = new System.Drawing.Point(12, 51);
+            this.textBoxNumberOfUsers.Name = "textBoxNumberOfUsers";
+            this.textBoxNumberOfUsers.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumberOfUsers.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 457);
+            this.Controls.Add(this.textBoxNumberOfUsers);
             this.Controls.Add(this.FilePathTB);
             this.Controls.Add(this.GenerateDataBtn);
             this.Controls.Add(this.checkBox10);
@@ -198,6 +207,7 @@
         private System.Windows.Forms.CheckBox checkBox10;
         private System.Windows.Forms.Button GenerateDataBtn;
         private System.Windows.Forms.TextBox FilePathTB;
+        private System.Windows.Forms.TextBox textBoxNumberOfUsers;
     }
 }
 

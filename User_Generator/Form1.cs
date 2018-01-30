@@ -21,7 +21,8 @@ namespace User_Generator
 
         private void GenerateDataBtn_Click(object sender, EventArgs e)
         {
-            dataGenerator.GenerateUsers(5);
+            int numberOfUsers = Convert.ToInt32(textBoxNumberOfUsers.Text);
+            dataGenerator.GenerateUsers(numberOfUsers);
             dataGenerator.Serialise(@"C:\", dataGenerator.Users);
         }
     }
