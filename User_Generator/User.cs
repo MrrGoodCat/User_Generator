@@ -15,7 +15,7 @@ namespace User_Generator
         string userSurname;
         static bool userStatus = true;
         string login;
-        string passw = "nicecti1!";       
+        string passw = "";
         string hireDate = DateTime.UtcNow.ToString("G",
                         CultureInfo.CreateSpecificCulture("en-us"));
         string graduationDate = DateTime.UtcNow.ToString("G",
@@ -63,8 +63,6 @@ namespace User_Generator
                 userStatus = value;
             }
         }
-
-
 
         public string os_login
         {

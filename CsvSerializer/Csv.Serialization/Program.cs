@@ -38,7 +38,7 @@ namespace Csv.Serialization
 				{
 					UseTextQualifier = true,
 				};
-				cs.Serialize(stream, data);
+				cs.Serialize(stream, data, "");
 			}
 
 			// Deserialization

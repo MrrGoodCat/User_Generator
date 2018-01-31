@@ -11,6 +11,7 @@ namespace User_Generator
 {
     public class DataGenerator
     {
+
         //CsvSerializer<User> serializer;
         Data data = new Data();
         public List<User> Users = new List<User>();
@@ -22,7 +23,7 @@ namespace User_Generator
                 string firstName = data.GetRandomName();
                 string lastName = data.GetRandomSurname();
                 string login = firstName + lastName;
-                User user = new User(firstName, lastName, true, login, "nice");
+                User user = new User(firstName, lastName, true, login, "nicecti1!");
                 Users.Add(user);
                 count--;
             }
@@ -36,8 +37,19 @@ namespace User_Generator
                 {
                     UseTextQualifier = true,
                 };
-                cs.Serialize(stream, users);
+                cs.Serialize(stream, users, "Users");
             }
         }
+
+        //public void MarkSerializer(string filePath, string mark)
+        //{
+        //    //before your loop
+        //    var csv = new StringBuilder();
+        //    var newLine = string.Format("#{0}", mark);
+        //    csv.AppendLine(newLine);
+
+        //    //after your loop
+        //    File.WriteAllText(filePath, csv.ToString());
+        //}
     }
 }

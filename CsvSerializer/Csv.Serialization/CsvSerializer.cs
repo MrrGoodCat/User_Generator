@@ -123,8 +123,7 @@ namespace Csv.Serialization
 			}
 
 			var r = from a in q
-					where a.GetCustomAttribute<CsvIgnoreAttribute>() == null
-					orderby a.Name
+					where a.GetCustomAttribute<CsvIgnoreAttribute>() == null					
 					select a;
 
 			_properties = r.ToList();
@@ -231,11 +230,12 @@ namespace Csv.Serialization
 		/// </summary>
 		/// <param name="stream">stream</param>
 		/// <param name="data">data</param>
-		public void Serialize(Stream stream, IList<T> data)
+		public void Serialize(Stream stream, IList<T> data, string mark)
 		{
 			var sb = new StringBuilder();
 			var values = new List<string>();
 
+            sb.AppendLine($"#{mark}");
 			sb.AppendLine(GetHeader());
 
 			var row = 1;
@@ -302,8 +302,11 @@ namespace Csv.Serialization
 			return string.Join(Separator.ToString(), header.ToArray());
 		}
 	}
-
-	public class CsvIgnoreAttribute : Attribute { }
+   // [AttributeUsage(AttributeTargets.Property)]
+	public class CsvIgnoreAttribute : Attribute
+    {
+        public string Value { get; set; }
+    }
 
 	public class InvalidCsvFormatException : Exception
 	{
