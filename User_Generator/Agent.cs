@@ -8,12 +8,12 @@ namespace User_Generator
 {
     public class Agent
     {
-        string _user_id;
-        string _switch;
-        int _agent_id;
-        int _extension;
-        string _email;
-        string _alias;
+        string _user_id = "1";
+        string _switch = "2";
+        int _agent_id = 1;
+        int _extension = 1;
+        string _email = "e";
+        string _alias = "a";
 
         public string user_id
         {
@@ -91,6 +91,11 @@ namespace User_Generator
             {
                 _alias = value;
             }
+        }
+
+        public Agent()
+        {
+
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Csv.Serialization
 
 		private char _separator = ',';
 
-		private bool _useEofLiteral = false;
+		private bool _useEofLiteral = true;
 
 		private bool _useLineNumbers = false;
 
@@ -275,12 +275,10 @@ namespace Csv.Serialization
 					values.Add(row++.ToString());
 				}
 
-				values.Add("EOF");
+				values.Add("");
 
 				sb.AppendLine(string.Join(Separator.ToString(), values.ToArray()));
 			}
-
-            //sb.AppendLine("");
 
 			using (var sw = new StreamWriter(stream))
 			{
