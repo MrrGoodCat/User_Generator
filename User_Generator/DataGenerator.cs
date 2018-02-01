@@ -15,29 +15,38 @@ namespace User_Generator
         //CsvSerializer<User> serializer;
         Data data = new Data();
         public List<User> Users = new List<User>();
+        public List<Agent> Agents = new List<Agent>();
 
         public void GenerateUsers(int count)
         {
+            int UserId = 10;
             while (count != 0)
             {
                 string firstName = data.GetRandomName();
                 string lastName = data.GetRandomSurname();
                 string login = firstName + lastName;
-                User user = new User(firstName, lastName, true, login, "nicecti1!");
+                User user = new User(UserId, firstName, lastName, true, login, "nicecti1!");
                 Users.Add(user);
                 count--;
+                UserId++;
             }
         }
 
-        public void Serialise(string pathToFile, List<User> users)
+        public void Serialise(string pathToFile, List<User> users, List<Agent> agents)
         {
             using (var stream = new FileStream("ImpUsers.csv", FileMode.Create, FileAccess.Write))
             {
-                var cs = new CsvSerializer<User>()
+                var csu = new CsvSerializer<User>()
                 {
                     UseTextQualifier = true,
                 };
-                cs.Serialize(stream, users, "Users");
+                csu.Serialize(stream, users, "Users");
+
+                //var csa = new CsvSerializer<Agent>()
+                //{
+                //    UseTextQualifier = true,
+                //};
+                //csa.Serialize(stream, agents, "Additional Agent Identities");
             }
         }
 

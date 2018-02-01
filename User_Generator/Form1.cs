@@ -24,7 +24,7 @@ namespace User_Generator
             int numberOfUsers = Convert.ToInt32(textBoxNumberOfUsers.Text);
             dataGenerator.GenerateUsers(numberOfUsers);
             //dataGenerator.MarkSerializer(@"C:\", "Users");
-            dataGenerator.Serialise(@"C:\", dataGenerator.Users);
+            dataGenerator.Serialise(@"C:\", dataGenerator.Users, dataGenerator.Agents);
         }
     }
 }

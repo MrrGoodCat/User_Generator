@@ -11,11 +11,21 @@ namespace User_Generator
 {
     public class User
     {
+        string _userId = "NiceUserId_";
+        string firstName;
+        string middleName;
+        string lastName;
         string userName;
-        string userSurname;
         static bool userStatus = true;
+        string passw = "nicecti1!";
         string login;
-        string passw = "";
+        string _department;
+        string _location;
+        string _site = "Master Site";
+        string _jobClass;
+        string _jobSkill;
+        string _jobFunction;
+        string _emailAddress;
         string hireDate = DateTime.UtcNow.ToString("G",
                         CultureInfo.CreateSpecificCulture("en-us"));
         string graduationDate = DateTime.UtcNow.ToString("G",
@@ -23,17 +33,51 @@ namespace User_Generator
         int graduationScore = 0;
         int internalUserId = 2;
         string userState = (UserStatus == true ? "active" : "inactive");
+        string _domain;
+        string _agentIdentification;
+        string _switch;
+        int _agentId;
+        int _extension;
+        string _alias;
+        string _userRtiAgent = "Disabled";
+
+
+        public string user_id
+        {
+            get
+            {
+                return _userId;
+            }
+
+            set
+            {
+                _userId = value;
+            }
+        }
 
         public string first_name
         {
             get
             {
-                return userName;
+                return firstName;
             }
 
             set
             {
-                userName = value;
+                firstName = value;
+            }
+        }
+        [CsvIgnore]
+        public string middle_name
+        {
+            get
+            {
+                return middleName;
+            }
+
+            set
+            {
+                middleName = value;
             }
         }
 
@@ -41,12 +85,12 @@ namespace User_Generator
         {
             get
             {
-                return userSurname;
+                return lastName;
             }
 
             set
             {
-                userSurname = value;
+                lastName = value;
             }
         }
 
@@ -64,6 +108,19 @@ namespace User_Generator
             }
         }
 
+        public string password
+        {
+            get
+            {
+                return passw;
+            }
+
+            set
+            {
+                passw = value;
+            }
+        }
+
         public string os_login
         {
             get
@@ -76,17 +133,95 @@ namespace User_Generator
                 login = value;
             }
         }
-
-        public string password
+        [CsvIgnore]
+        public string department
         {
             get
             {
-                return passw;
+                return _department;
             }
 
             set
             {
-                passw = value;
+                _department = value;
+            }
+        }
+        [CsvIgnore]
+        public string location
+        {
+            get
+            {
+                return _location;
+            }
+
+            set
+            {
+                _location = value;
+            }
+        }
+
+        public string site
+        {
+            get
+            {
+                return _site;
+            }
+
+            set
+            {
+                _site = value;
+            }
+        }
+        [CsvIgnore]
+        public string job_class
+        {
+            get
+            {
+                return _jobClass;
+            }
+
+            set
+            {
+                _jobClass = value;
+            }
+        }
+        [CsvIgnore]
+        public string job_skill
+        {
+            get
+            {
+                return _jobSkill;
+            }
+
+            set
+            {
+                _jobSkill = value;
+            }
+        }
+        [CsvIgnore]
+        public string job_function
+        {
+            get
+            {
+                return _jobFunction;
+            }
+
+            set
+            {
+                _jobFunction = value;
+            }
+        }
+        [CsvIgnore]
+        public string email_address
+        {
+            get
+            {
+                return _emailAddress;
+            }
+
+            set
+            {
+                _emailAddress = value;
             }
         }
 
@@ -154,26 +289,121 @@ namespace User_Generator
                 userState = value;
             }
         }
+        [CsvIgnore]
+        public string domain
+        {
+            get
+            {
+                return _domain;
+            }
+
+            set
+            {
+                _domain = value;
+            }
+        }
+        [CsvIgnore]
+        public string agent_identification
+        {
+            get
+            {
+                return _agentIdentification;
+            }
+
+            set
+            {
+                _agentIdentification = value;
+            }
+        }
+        [CsvIgnore]
+        public string Switch
+        {
+            get
+            {
+                return _switch;
+            }
+
+            set
+            {
+                _switch = value;
+            }
+        }
+        [CsvIgnore]
+        public int agent_id
+        {
+            get
+            {
+                return _agentId;
+            }
+
+            set
+            {
+                _agentId = value;
+            }
+        }
+        [CsvIgnore]
+        public int extension
+        {
+            get
+            {
+                return _extension;
+            }
+
+            set
+            {
+                _extension = value;
+            }
+        }
+        [CsvIgnore]
+        public string alias
+        {
+            get
+            {
+                return _alias;
+            }
+
+            set
+            {
+                _alias = value;
+            }
+        }
+
+        public string user_rti_agent
+        {
+            get
+            {
+                return _userRtiAgent;
+            }
+
+            set
+            {
+                _userRtiAgent = value;
+            }
+        }
 
         public User()
         {
 
         }
 
-        public User(string name, string surname, bool status)
+        public User(int user_id, string name, string surname, bool status)
         {
-            userName = name;
-            userSurname = surname;
-            userStatus = status; 
+            _userId += user_id;
+            firstName = name;
+            lastName = surname;
+            userStatus = status;
+            internalUserId = user_id;
         }
 
-        public User(string name, string surname, bool status, string login, string password)
+        public User(int user_id, string name, string surname, bool status, string login, string password)
         {
-            userName = name;
-            userSurname = surname;
+            _userId += user_id;
+            firstName = name;
+            lastName = surname;
             userStatus = status;
             this.login = login;
             passw = password;
+            internalUserId = user_id;
         }
     }
 

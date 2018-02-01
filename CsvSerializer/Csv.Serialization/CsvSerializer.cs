@@ -40,7 +40,7 @@ namespace Csv.Serialization
 
 		private bool _useEofLiteral = false;
 
-		private bool _useLineNumbers = true;
+		private bool _useLineNumbers = false;
 
 		private bool _useTextQualifier = false;
 
@@ -279,6 +279,8 @@ namespace Csv.Serialization
 
 				sb.AppendLine(string.Join(Separator.ToString(), values.ToArray()));
 			}
+
+            //sb.AppendLine("");
 
 			using (var sw = new StreamWriter(stream))
 			{
