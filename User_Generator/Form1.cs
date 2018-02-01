@@ -22,9 +22,10 @@ namespace User_Generator
         private void GenerateDataBtn_Click(object sender, EventArgs e)
         {
             int numberOfUsers = Convert.ToInt32(textBoxNumberOfUsers.Text);
+            int numberOfGroups = Convert.ToInt32(textBoxGroupsCount.Text);
             dataGenerator.GenerateUsers(numberOfUsers);
-            //dataGenerator.MarkSerializer(@"C:\", "Users");
-            dataGenerator.Serialise(@"C:\", dataGenerator.Users, dataGenerator.Agents);
+            dataGenerator.GenerateGroups(numberOfGroups);
+            dataGenerator.Serialise(@"C:\", dataGenerator.Users,dataGenerator.Agents, dataGenerator.Groups);
         }
     }
 }

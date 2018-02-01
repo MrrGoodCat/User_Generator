@@ -11,10 +11,12 @@ namespace User_Generator.Database
     {
         List<string> names;
         List<string> surnames;
+        List<string> groups;
 
         Random random;
         string namesFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Database\\Names.txt");
         string surnamesFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Database\\Surnames.txt");
+        string groupsFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Database\\Groups.txt");
 
         public List<string> Names
         {
@@ -42,13 +44,28 @@ namespace User_Generator.Database
             }
         }
 
+        public List<string> Groups
+        {
+            get
+            {
+                return groups;
+            }
+
+            set
+            {
+                groups = value;
+            }
+        }
+
         public Data()
         {
             random = new Random(DateTime.Now.Millisecond);
             Names = new List<string>();
             Surnames = new List<string>();
+            Groups = new List<string>();
             fillTheList(namesFilePath, this.Names);
             fillTheList(surnamesFilePath, this.Surnames);
+            fillTheList(groupsFilePath, this.Groups);
         }
 
         void fillTheList(string filePath, List<string> names)
@@ -71,6 +88,12 @@ namespace User_Generator.Database
         {
             string surname = Surnames[random.Next(0, 1000)];
             return surname;
+        }
+
+        public string GetRandomGroupName()
+        {
+            string group = Groups[random.Next(0, 947)];
+            return group;
         }
     }
 }

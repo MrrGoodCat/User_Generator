@@ -95,6 +95,9 @@
     <EmbeddedResource Include="Database\Male Names.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Database\Groups.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Database\Names.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

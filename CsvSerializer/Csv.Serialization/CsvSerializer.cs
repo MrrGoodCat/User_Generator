@@ -235,7 +235,7 @@ namespace Csv.Serialization
 			var sb = new StringBuilder();
 			var values = new List<string>();
 
-            sb.AppendLine($"#{mark}");
+            sb.AppendLine($"{mark}");
 			sb.AppendLine(GetHeader());
 
 			var row = 1;
@@ -279,11 +279,12 @@ namespace Csv.Serialization
 
 				sb.AppendLine(string.Join(Separator.ToString(), values.ToArray()));
 			}
+            sb.AppendLine("#");
 
-			using (var sw = new StreamWriter(stream))
-			{
-				sw.Write(sb.ToString().Trim());
-			}
+
+            var sw = new StreamWriter(stream);
+			sw.Write(sb.ToString().Trim());
+            sw.Close();
 		}
 
 		/// <summary>

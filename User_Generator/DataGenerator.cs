@@ -16,6 +16,8 @@ namespace User_Generator
         Data data = new Data();
         public List<User> Users = new List<User>();
         public List<Agent> Agents = new List<Agent>();
+        public List<Group> Groups = new List<Group>();
+        private Object thisLock = new Object();
 
         public void GenerateUsers(int count)
         {
@@ -32,7 +34,22 @@ namespace User_Generator
             }
         }
 
-        public void Serialise(string pathToFile, List<User> users, List<Agent> agents)
+        public void GenerateGroups(int count)
+        {
+            int groupId = 100;
+            int parentId = -1;
+            while (count != 0)
+            {
+                string groupName = data.GetRandomGroupName();
+                Group group = new Group(groupId, groupName, parentId);
+                Groups.Add(group);
+                count--;
+                groupId++;
+            }
+
+        }
+
+        public void Serialise(string pathToFile, List<User> users, List<Agent> agents, List<Group> groups)
         {
             using (var stream = new FileStream("ImpUsers.csv", FileMode.Create, FileAccess.Write))
             {
@@ -40,13 +57,25 @@ namespace User_Generator
                 {
                     UseTextQualifier = true,
                 };
-                csu.Serialize(stream, users, "Users");
+                csu.Serialize(stream, users, "#Users");              
+            }
 
-                //var csa = new CsvSerializer<Agent>()
-                //{
-                //    UseTextQualifier = true,
-                //};
-                //csa.Serialize(stream, agents, "Additional Agent Identities");
+            using (var stream = new FileStream("ImpUsers.csv", FileMode.Append, FileAccess.Write))
+            {
+                var csg = new CsvSerializer<Agent>()
+                {
+                    UseTextQualifier = true,
+                };
+                csg.Serialize(stream, agents, "Additional Agent Identities");
+            }
+
+            using (var stream = new FileStream("ImpUsers.csv", FileMode.Append, FileAccess.Write))
+            {
+                var csg = new CsvSerializer<Group>()
+                {
+                    UseTextQualifier = true,
+                };
+                csg.Serialize(stream, groups, "Groups");
             }
         }
 

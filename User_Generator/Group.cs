@@ -15,7 +15,7 @@ namespace User_Generator
         User groupManager;
         List<User> users;
 
-        public string GroupName
+        public string name
         {
             get
             {
@@ -28,7 +28,7 @@ namespace User_Generator
             }
         }
 
-        public int GroupId
+        public int id
         {
             get
             {
@@ -41,7 +41,7 @@ namespace User_Generator
             }
         }
 
-        public int ParentId
+        public int parent_id
         {
             get
             {
@@ -78,6 +78,19 @@ namespace User_Generator
             {
                 users = value;
             }
+        }
+
+        public Group()
+        {
+
+        }
+
+        public Group(int groupId, string groupName, int parentId)
+        {
+            _groupId = groupId;
+            _groupName = groupName;
+            _parentId = parentId;
+
         }
     }
 }

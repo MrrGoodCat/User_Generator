@@ -41,12 +41,13 @@
             this.GenerateDataBtn = new System.Windows.Forms.Button();
             this.FilePathTB = new System.Windows.Forms.TextBox();
             this.textBoxNumberOfUsers = new System.Windows.Forms.TextBox();
+            this.textBoxGroupsCount = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 101);
+            this.checkBox1.Location = new System.Drawing.Point(13, 181);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(80, 17);
             this.checkBox1.TabIndex = 0;
@@ -56,7 +57,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(13, 125);
+            this.checkBox2.Location = new System.Drawing.Point(13, 205);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(80, 17);
             this.checkBox2.TabIndex = 1;
@@ -66,7 +67,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(13, 149);
+            this.checkBox3.Location = new System.Drawing.Point(13, 229);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(80, 17);
             this.checkBox3.TabIndex = 2;
@@ -76,7 +77,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(13, 173);
+            this.checkBox4.Location = new System.Drawing.Point(13, 253);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(80, 17);
             this.checkBox4.TabIndex = 3;
@@ -86,7 +87,7 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(13, 197);
+            this.checkBox5.Location = new System.Drawing.Point(13, 277);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(80, 17);
             this.checkBox5.TabIndex = 4;
@@ -96,7 +97,7 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(13, 221);
+            this.checkBox6.Location = new System.Drawing.Point(13, 301);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(80, 17);
             this.checkBox6.TabIndex = 5;
@@ -106,7 +107,7 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(13, 245);
+            this.checkBox7.Location = new System.Drawing.Point(13, 325);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(80, 17);
             this.checkBox7.TabIndex = 6;
@@ -116,7 +117,7 @@
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(13, 269);
+            this.checkBox8.Location = new System.Drawing.Point(13, 349);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(80, 17);
             this.checkBox8.TabIndex = 7;
@@ -126,7 +127,7 @@
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(13, 293);
+            this.checkBox9.Location = new System.Drawing.Point(13, 373);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.Size = new System.Drawing.Size(80, 17);
             this.checkBox9.TabIndex = 8;
@@ -136,7 +137,7 @@
             // checkBox10
             // 
             this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(13, 317);
+            this.checkBox10.Location = new System.Drawing.Point(13, 397);
             this.checkBox10.Name = "checkBox10";
             this.checkBox10.Size = new System.Drawing.Size(86, 17);
             this.checkBox10.TabIndex = 9;
@@ -157,7 +158,7 @@
             // 
             this.FilePathTB.Location = new System.Drawing.Point(12, 22);
             this.FilePathTB.Name = "FilePathTB";
-            this.FilePathTB.Size = new System.Drawing.Size(526, 22);
+            this.FilePathTB.Size = new System.Drawing.Size(526, 20);
             this.FilePathTB.TabIndex = 11;
             this.FilePathTB.Text = "C:\\data.csv";
             // 
@@ -165,14 +166,22 @@
             // 
             this.textBoxNumberOfUsers.Location = new System.Drawing.Point(12, 51);
             this.textBoxNumberOfUsers.Name = "textBoxNumberOfUsers";
-            this.textBoxNumberOfUsers.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumberOfUsers.Size = new System.Drawing.Size(100, 20);
             this.textBoxNumberOfUsers.TabIndex = 12;
+            // 
+            // textBoxGroupsCount
+            // 
+            this.textBoxGroupsCount.Location = new System.Drawing.Point(12, 78);
+            this.textBoxGroupsCount.Name = "textBoxGroupsCount";
+            this.textBoxGroupsCount.Size = new System.Drawing.Size(100, 20);
+            this.textBoxGroupsCount.TabIndex = 13;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 457);
+            this.Controls.Add(this.textBoxGroupsCount);
             this.Controls.Add(this.textBoxNumberOfUsers);
             this.Controls.Add(this.FilePathTB);
             this.Controls.Add(this.GenerateDataBtn);
@@ -208,6 +217,7 @@
         private System.Windows.Forms.Button GenerateDataBtn;
         private System.Windows.Forms.TextBox FilePathTB;
         private System.Windows.Forms.TextBox textBoxNumberOfUsers;
+        private System.Windows.Forms.TextBox textBoxGroupsCount;
     }
 }
 
