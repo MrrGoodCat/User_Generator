@@ -32,6 +32,8 @@ namespace Csv.Serialization
 
 		private List<PropertyInfo> _properties;
 
+        private List<PropertyInfo> _userGroupDependencyProperties;
+
 		private string _replacement = ((char)0x255).ToString();
 
 		private string _rowNumberColumnTitle = "user_id";
@@ -126,7 +128,12 @@ namespace Csv.Serialization
 					where a.GetCustomAttribute<CsvIgnoreAttribute>() == null					
 					select a;
 
-			_properties = r.ToList();
+            var d = from a in q
+                    where a.GetCustomAttribute<CsvDependencyAttribute>() != null
+                    select a;
+
+            _properties = r.ToList();
+            _userGroupDependencyProperties = d.ToList();
 		}
 
 		/// <summary>
@@ -287,11 +294,11 @@ namespace Csv.Serialization
             sw.Close();
 		}
 
-		/// <summary>
-		/// Get Header
-		/// </summary>
-		/// <returns></returns>
-		private string GetHeader()
+        /// <summary>
+        /// Get Header
+        /// </summary>
+        /// <returns></returns>
+        private string GetHeader()
 		{
 			var header = _properties.Select(a => a.Name);
 
@@ -302,14 +309,19 @@ namespace Csv.Serialization
 
 			return string.Join(Separator.ToString(), header.ToArray());
 		}
-	}
-   // [AttributeUsage(AttributeTargets.Property)]
+    }
+
 	public class CsvIgnoreAttribute : Attribute
     {
         public string Value { get; set; }
     }
 
-	public class InvalidCsvFormatException : Exception
+    public class CsvDependencyAttribute : Attribute
+    {
+        public string Value { get; set; }
+    }
+
+    public class InvalidCsvFormatException : Exception
 	{
 		/// <summary>
 		/// Invalid Csv Format Exception

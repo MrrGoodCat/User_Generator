@@ -11,17 +11,15 @@ namespace User_Generator
 {
     public class DataGenerator
     {
-
-        //CsvSerializer<User> serializer;
         Data data = new Data();
         public List<User> Users = new List<User>();
         public List<Agent> Agents = new List<Agent>();
         public List<Group> Groups = new List<Group>();
-        private Object thisLock = new Object();
+        public List<UserGroupDependency> Dependencies = new List<UserGroupDependency>();
 
         public void GenerateUsers(int count)
         {
-            int UserId = 10;
+            int UserId = 40;
             while (count != 0)
             {
                 string firstName = data.GetRandomName();
@@ -36,7 +34,7 @@ namespace User_Generator
 
         public void GenerateGroups(int count)
         {
-            int groupId = 100;
+            int groupId = 105;
             int parentId = -1;
             while (count != 0)
             {
@@ -49,7 +47,45 @@ namespace User_Generator
 
         }
 
-        public void Serialise(string pathToFile, List<User> users, List<Agent> agents, List<Group> groups)
+        public void GenerateUserGroupDependency()
+        {
+            
+            Random random = new Random();
+            foreach (var group in Groups)
+            {
+                int NumberOfUsersInGroup = random.Next(0, Users.Count/Groups.Count*4);
+                for (int i = 0; i < NumberOfUsersInGroup; i++)
+                {
+                    User user;
+                    do
+                    {
+                        user = Users[(random.Next(0, Users.Count))];
+                    } while (user.IsManager || user.UsersGroups.Contains(group));
+
+                    if (user.UsersGroups.Count == 0 && group.GroupManager == null)
+                    {
+                        group.GroupManager = user;
+                        user.IsManager = true;
+                    }
+                    group.Users.Add(user);
+                    user.UsersGroups.Add(group);
+                }
+            }
+
+            foreach (var user in Users)
+            {
+                if (user.UsersGroups.Count != 0)
+                {
+                    foreach (var group in user.UsersGroups)
+                    {
+                        UserGroupDependency ugd = new UserGroupDependency(user.user_id, group.id, user.IsManager);
+                        Dependencies.Add(ugd);
+                    }
+                }
+            }
+        }
+
+        public void Serialise(string pathToFile, List<User> users, List<Agent> agents, List<UserGroupDependency> dependencies, List<Group> groups)
         {
             using (var stream = new FileStream("ImpUsers.csv", FileMode.Create, FileAccess.Write))
             {
@@ -71,6 +107,15 @@ namespace User_Generator
 
             using (var stream = new FileStream("ImpUsers.csv", FileMode.Append, FileAccess.Write))
             {
+                var csg = new CsvSerializer<UserGroupDependency>()
+                {
+                    UseTextQualifier = true,
+                };
+                csg.Serialize(stream, dependencies, "User Groups");
+            }
+
+            using (var stream = new FileStream("ImpUsers.csv", FileMode.Append, FileAccess.Write))
+            {
                 var csg = new CsvSerializer<Group>()
                 {
                     UseTextQualifier = true,
@@ -78,16 +123,5 @@ namespace User_Generator
                 csg.Serialize(stream, groups, "Groups");
             }
         }
-
-        //public void MarkSerializer(string filePath, string mark)
-        //{
-        //    //before your loop
-        //    var csv = new StringBuilder();
-        //    var newLine = string.Format("#{0}", mark);
-        //    csv.AppendLine(newLine);
-
-        //    //after your loop
-        //    File.WriteAllText(filePath, csv.ToString());
-        //}
     }
 }

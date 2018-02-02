@@ -10,7 +10,7 @@ namespace User_Generator
     public class Group
     {
         string _groupName;
-        int _groupId;
+        string _groupId = "NiceGroupId_";
         int _parentId;
         User groupManager;
         List<User> users;
@@ -28,7 +28,8 @@ namespace User_Generator
             }
         }
 
-        public int id
+        [CsvDependency]
+        public string id
         {
             get
             {
@@ -53,6 +54,7 @@ namespace User_Generator
                 _parentId = value;
             }
         }
+
         [CsvIgnore]
         public User GroupManager
         {
@@ -66,6 +68,7 @@ namespace User_Generator
                 groupManager = value;
             }
         }
+
         [CsvIgnore]
         public List<User> Users
         {
@@ -87,10 +90,10 @@ namespace User_Generator
 
         public Group(int groupId, string groupName, int parentId)
         {
-            _groupId = groupId;
+            _groupId += groupId;
             _groupName = groupName;
             _parentId = parentId;
-
+            users = new List<User>();
         }
     }
 }

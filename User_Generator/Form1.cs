@@ -25,7 +25,8 @@ namespace User_Generator
             int numberOfGroups = Convert.ToInt32(textBoxGroupsCount.Text);
             dataGenerator.GenerateUsers(numberOfUsers);
             dataGenerator.GenerateGroups(numberOfGroups);
-            dataGenerator.Serialise(@"C:\", dataGenerator.Users,dataGenerator.Agents, dataGenerator.Groups);
+            dataGenerator.GenerateUserGroupDependency();
+            dataGenerator.Serialise(@"C:\", dataGenerator.Users,dataGenerator.Agents, dataGenerator.Dependencies, dataGenerator.Groups);
         }
     }
 }

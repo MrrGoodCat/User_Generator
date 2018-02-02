@@ -41,7 +41,10 @@ namespace User_Generator
         string _alias;
         string _userRtiAgent = "Disabled";
 
+        bool isManager = false;
+        List<Group> usersGroups;
 
+        [CsvDependency]
         public string user_id
         {
             get
@@ -105,6 +108,19 @@ namespace User_Generator
             set
             {
                 userStatus = value;
+            }
+        }
+
+        public string user_name
+        {
+            get
+            {
+                return userName;
+            }
+
+            set
+            {
+                userName = value;
             }
         }
 
@@ -381,6 +397,37 @@ namespace User_Generator
             }
         }
 
+        [CsvIgnore]
+        [CsvDependency]
+        public bool IsManager
+        {
+            get
+            {
+                return isManager;
+            }
+
+            set
+            {
+                isManager = value;
+            }
+        }
+
+        [CsvIgnore]
+        [CsvDependency]
+        public List<Group> UsersGroups
+        {
+            get
+            {
+                return usersGroups;
+            }
+
+            set
+            {
+                usersGroups = value;
+            }
+        }
+
+
         public User()
         {
 
@@ -393,6 +440,8 @@ namespace User_Generator
             lastName = surname;
             userStatus = status;
             internalUserId = user_id;
+            usersGroups = new List<Group>();
+            userName = firstName += user_id;
         }
 
         public User(int user_id, string name, string surname, bool status, string login, string password)
@@ -404,6 +453,8 @@ namespace User_Generator
             this.login = login;
             passw = password;
             internalUserId = user_id;
+            usersGroups = new List<Group>();
+            userName = firstName += user_id;  
         }
     }
 
